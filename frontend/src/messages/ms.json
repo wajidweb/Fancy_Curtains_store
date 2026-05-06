@@ -1,0 +1,14 @@
+{
+  "HomePage": {
+    "title": "Selamat Datang ke Fancy, Langsir & Perabot",
+    "description": "Langsir dan Perabot Premium di Malaysia",
+    "cta": "Beli Sekarang"
+  },
+  "Navigation": {
+    "home": "Utama",
+    "products": "Produk",
+    "services": "Perkhidmatan",
+    "cart": "Bakul",
+    "login": "Log Masuk"
+  }
+}

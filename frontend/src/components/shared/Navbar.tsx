@@ -1,0 +1,165 @@
+'use client';
+
+import { useTranslations, useLocale } from 'next-intl';
+import Link from 'next/link';
+import LangSwitcher from './LangSwitcher';
+import { ShoppingCart, User, LogOut, LayoutDashboard, Menu, X } from 'lucide-react';
+import { useAuthStore } from '@/store/useAuthStore';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+export default function Navbar() {
+  const t = useTranslations('Navigation');
+  const locale = useLocale();
+  const { user, logout, isAdmin } = useAuthStore();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: t('home'), href: `/${locale}` },
+    { name: t('products'), href: `/${locale}/products` },
+    { name: t('services'), href: `/${locale}/services` },
+  ];
+
+  return (
+    <div className="fixed top-0 left-0 right-0 z-[100]">
+      {/* 1. TOP ANNOUNCEMENT BAR */}
+      <div className="bg-fancy-maroon text-white text-[9px] md:text-[11px] tracking-[0.2em] md:tracking-[0.3em] uppercase py-2 md:py-3 px-4 flex justify-center items-center font-bold text-center">
+        <span>{locale === 'ms' ? 'KUALITI DALAM SETIAP LIPATAN • PENGHANTARAN PERCUMA ATAS RM500' : 'QUALITY IN EVERY FOLD • FREE SHIPPING ABOVE RM500'}</span>
+      </div>
+
+      {/* 2. MAIN NAVBAR */}
+      <nav className={`transition-all duration-500 ${isScrolled || isMobileMenuOpen ? 'bg-white shadow-sm py-2 md:py-3' : 'bg-transparent py-4 md:py-6'}`}>
+        <div className="max-w-[1800px] mx-auto px-4 md:px-12 text-fancy-charcoal">
+          <div className="flex justify-between items-center font-medium">
+            
+            {/* LEFT: Nav Links (Desktop) & Menu Toggle (Mobile) */}
+            <div className="flex items-center md:gap-10 w-1/4 md:w-1/3 font-bold">
+              <button 
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`${isScrolled || isMobileMenuOpen ? 'text-fancy-charcoal' : 'text-white'} md:hidden transition-colors p-1`}
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+              <div className="hidden md:flex gap-10 text-[12px] tracking-[0.25em] uppercase">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`transition-colors hover:text-fancy-maroon ${isScrolled ? 'text-fancy-charcoal' : 'text-white'}`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* CENTER: Logo */}
+            <div className="flex-shrink-0 flex flex-col items-center justify-center w-2/4 md:w-1/3">
+              <Link href={`/${locale}`} className="flex flex-col items-center">
+                <span className={`tracking-[0.15em] leading-none transition-all duration-500 font-bold ${isScrolled || isMobileMenuOpen ? 'text-xl md:text-2xl text-fancy-maroon' : 'text-2xl md:text-4xl text-white'}`}>
+                  FANCY
+                </span>
+                <span className={`text-[8px] md:text-[11px] tracking-[0.2em] md:tracking-[0.3em] uppercase font-bold mt-1 transition-colors ${isScrolled || isMobileMenuOpen ? 'text-fancy-charcoal' : 'text-white'}`}>
+                  LANGSIR & PERABOT
+                </span>
+              </Link>
+            </div>
+            
+            {/* RIGHT: Lang, Cart, Auth */}
+            <div className="flex items-center justify-end gap-3 md:gap-8 w-1/4 md:w-1/3 font-bold">
+              <div className={`hidden lg:block transition-colors ${isScrolled || isMobileMenuOpen ? '' : '[&_button]:border-white/50 [&_button]:text-white [&_button:hover]:bg-white [&_button:hover]:text-fancy-charcoal'}`}>
+                <LangSwitcher />
+              </div>
+              
+              <Link href={`/${locale}/cart`} className="relative p-1">
+                <div className="relative">
+                  <ShoppingCart size={24} strokeWidth={2.5} className={`transition-colors hover:text-fancy-maroon ${isScrolled || isMobileMenuOpen ? 'text-fancy-charcoal' : 'text-white'}`} />
+                  <span className="absolute -top-1 -right-1 bg-fancy-maroon text-white text-[8px] w-3.5 h-3.5 flex items-center justify-center rounded-full font-bold">
+                    0
+                  </span>
+                </div>
+              </Link>
+
+              <div className="hidden sm:flex items-center gap-3 md:gap-4">
+                {user ? (
+                  <>
+                    {isAdmin() && (
+                      <Link href={`/${locale}/admin/dashboard`} className="text-amber-600 hover:text-amber-700 transition-colors p-1">
+                        <LayoutDashboard size={22} strokeWidth={2.5} />
+                      </Link>
+                    )}
+                    <button onClick={logout} className={`transition-colors hover:text-red-600 p-1 ${isScrolled || isMobileMenuOpen ? 'text-fancy-charcoal' : 'text-white'}`}>
+                      <LogOut size={22} strokeWidth={2.5} />
+                    </button>
+                  </>
+                ) : (
+                  <Link href={`/${locale}/login`} className={`transition-colors hover:text-fancy-maroon p-1 ${isScrolled || isMobileMenuOpen ? 'text-fancy-charcoal' : 'text-white'}`}>
+                    <User size={24} strokeWidth={2.5} />
+                  </Link>
+                )}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </nav>
+
+      {/* MOBILE MENU OVERLAY */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="bg-white border-b border-gray-100 md:hidden overflow-hidden"
+          >
+            <div className="px-6 py-8 flex flex-col gap-6 font-bold uppercase text-[13px] tracking-[0.2em] text-fancy-charcoal">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="hover:text-fancy-maroon transition-colors flex justify-between items-center"
+                >
+                  {link.name}
+                  <X size={14} className="opacity-0" /> {/* Spacer */}
+                </Link>
+              ))}
+              <div className="h-[1px] bg-gray-100 my-2"></div>
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] text-gray-400">Language / Bahasa</span>
+                <LangSwitcher />
+              </div>
+              {!user && (
+                <Link 
+                  href={`/${locale}/login`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="bg-fancy-maroon text-white py-4 px-6 rounded-sm text-center tracking-[0.3em]"
+                >
+                  LOGIN
+                </Link>
+              )}
+              {user && (
+                <button 
+                  onClick={() => { logout(); setIsMobileMenuOpen(false); }}
+                  className="text-red-600 border border-red-100 py-4 px-6 rounded-sm text-center tracking-[0.3em]"
+                >
+                  LOGOUT
+                </button>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}

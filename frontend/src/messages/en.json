@@ -1,0 +1,14 @@
+{
+  "HomePage": {
+    "title": "Welcome to Fancy, Langsir & Perabot",
+    "description": "Premium Curtains and Furniture in Malaysia",
+    "cta": "Shop Now"
+  },
+  "Navigation": {
+    "home": "Home",
+    "products": "Products",
+    "services": "Services",
+    "cart": "Cart",
+    "login": "Login"
+  }
+}

@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-fancy-maroon: #8E1B3B;
+  --color-fancy-charcoal: #333333;
+  
+  --font-serif: var(--font-plus-jakarta), sans-serif;
+  --font-sans: var(--font-plus-jakarta), sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-plus-jakarta), sans-serif;
+  font-weight: 500;
+}
