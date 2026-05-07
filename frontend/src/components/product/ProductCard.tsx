@@ -50,21 +50,21 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
             <button 
               onClick={handleAddToCart}
-              className="w-full bg-white text-slate-900 py-3 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-slate-900 hover:text-white transition-all shadow-xl"
+              className="w-full bg-white/95 backdrop-blur-md text-fancy-charcoal py-4 text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-fancy-maroon hover:text-white transition-all shadow-xl rounded-sm"
             >
               Add to Cart
             </button>
           </div>
         </div>
         
-        <div className="text-center">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-emerald-800 font-bold mb-1 opacity-80">
+        <div className="text-center md:text-left">
+          <p className="text-[10px] tracking-[0.4em] uppercase text-fancy-maroon font-extrabold mb-2 opacity-90">
             {product.category}
           </p>
-          <h3 className="text-sm tracking-widest uppercase text-slate-900 mb-2 truncate px-2 font-medium">
+          <h3 className="text-[13px] tracking-widest uppercase text-fancy-charcoal mb-2 truncate font-bold group-hover:text-fancy-maroon transition-colors">
             {product.name[locale]}
           </h3>
-          <p className="text-sm font-bold text-slate-900">
+          <p className="text-sm font-extrabold text-fancy-charcoal">
             RM {product.price.toFixed(2)}
           </p>
         </div>

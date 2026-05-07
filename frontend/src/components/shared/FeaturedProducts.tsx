@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { ShoppingBag, Eye, Heart } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -19,6 +19,7 @@ interface Product {
 
 export default function FeaturedProducts() {
   const locale = useLocale() as 'ms' | 'en';
+  const t = useTranslations('FeaturedProducts');
   const [activeTab, setActiveTab] = useState<'curtains' | 'furniture'>('curtains');
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -64,9 +65,9 @@ export default function FeaturedProducts() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-10 text-fancy-charcoal text-center md:text-left">
           <div className="max-w-2xl">
-            <h3 className="text-xs tracking-[0.4em] uppercase font-bold text-fancy-maroon mb-4">Shop Collections</h3>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Featured Selection</h2>
-            <p className="text-gray-500 font-medium max-w-lg mx-auto md:mx-0">Discover our handpicked collection of premium textiles and design-forward furniture items for your home.</p>
+            <h3 className="text-xs tracking-[0.4em] uppercase font-bold text-fancy-maroon mb-4">{t('badge')}</h3>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">{t('title')}</h2>
+            <p className="text-gray-500 font-medium max-w-lg mx-auto md:mx-0">{t('subtitle')}</p>
           </div>
           
           {/* Tabs Container - Centered on mobile */}
@@ -76,13 +77,13 @@ export default function FeaturedProducts() {
                 onClick={() => setActiveTab('curtains')}
                 className={`px-6 md:px-8 py-3 text-[10px] md:text-xs tracking-[0.2em] font-extrabold uppercase rounded-lg transition-all duration-300 ${activeTab === 'curtains' ? 'bg-white text-fancy-maroon shadow-md border border-gray-100' : 'text-gray-400 hover:text-fancy-charcoal'}`}
               >
-                Curtains
+                {t('curtains')}
               </button>
               <button 
                 onClick={() => setActiveTab('furniture')}
                 className={`px-6 md:px-8 py-3 text-[10px] md:text-xs tracking-[0.2em] font-extrabold uppercase rounded-lg transition-all duration-300 ${activeTab === 'furniture' ? 'bg-white text-fancy-maroon shadow-md border border-gray-100' : 'text-gray-400 hover:text-fancy-charcoal'}`}
               >
-                Furniture
+                {t('furniture')}
               </button>
             </div>
           </div>
@@ -112,7 +113,7 @@ export default function FeaturedProducts() {
                     {/* Badges */}
                     {product.isNew && (
                       <span className="absolute top-4 left-4 bg-fancy-maroon text-white text-[9px] tracking-[0.2em] uppercase font-bold px-3 py-1.5 rounded-full shadow-lg">
-                        New
+                        {t('new')}
                       </span>
                     )}
 
@@ -139,7 +140,7 @@ export default function FeaturedProducts() {
                         className="w-full bg-white/95 backdrop-blur-md text-fancy-charcoal py-4 text-[10px] tracking-[0.25em] uppercase font-extrabold hover:bg-fancy-maroon hover:text-white transition-all shadow-2xl flex items-center justify-center gap-2"
                       >
                         <ShoppingBag size={14} strokeWidth={2.5} />
-                        Add to Cart
+                        {t('addToCart')}
                       </button>
                     </div>
                   </div>
@@ -174,7 +175,7 @@ export default function FeaturedProducts() {
             href={`/${locale}/products`}
             className="group flex flex-col items-center gap-4"
           >
-            <span className="text-xs tracking-[0.4em] uppercase font-extrabold text-fancy-charcoal hover:text-fancy-maroon transition-colors">View All Collections</span>
+            <span className="text-xs tracking-[0.4em] uppercase font-extrabold text-fancy-charcoal hover:text-fancy-maroon transition-colors">{t('viewAll')}</span>
             <div className="w-12 h-[1px] bg-gray-200 group-hover:w-24 group-hover:bg-fancy-maroon transition-all duration-500"></div>
           </Link>
         </div>

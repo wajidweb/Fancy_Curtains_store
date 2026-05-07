@@ -17,12 +17,16 @@ interface CartStore {
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
   getTotalPrice: () => number;
+  getTotalItems: () => number;
+  notification: string | null;
+  clearNotification: () => void;
 }
 
 export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       items: [],
+      notification: null,
       addItem: (item) => {
         const existingItem = get().items.find((i) => i.id === item.id && i.selectedVariant === item.selectedVariant);
         if (existingItem) {
@@ -32,10 +36,19 @@ export const useCartStore = create<CartStore>()(
                 ? { ...i, quantity: i.quantity + item.quantity }
                 : i
             ),
+            notification: 'added',
           });
         } else {
-          set({ items: [...get().items, item] });
+          set({ 
+            items: [...get().items, item],
+            notification: 'added',
+          });
         }
+
+        // Auto clear notification after 3 seconds
+        setTimeout(() => {
+          get().clearNotification();
+        }, 3000);
       },
       removeItem: (id) => {
         set({ items: get().items.filter((i) => i.id !== id) });
@@ -51,9 +64,15 @@ export const useCartStore = create<CartStore>()(
       getTotalPrice: () => {
         return get().items.reduce((total, item) => total + item.price * item.quantity, 0);
       },
+      getTotalItems: () => {
+        return get().items.reduce((total, item) => total + item.quantity, 0);
+      },
+      clearNotification: () => set({ notification: null }),
     }),
     {
       name: 'fancy-cart-storage',
+      // Only persist items, not the notification state
+      partialize: (state) => ({ items: state.items }),
     }
   )
 );

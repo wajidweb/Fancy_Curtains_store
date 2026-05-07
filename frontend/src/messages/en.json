@@ -2,13 +2,144 @@
   "HomePage": {
     "title": "Welcome to Fancy, Langsir & Perabot",
     "description": "Premium Curtains and Furniture in Malaysia",
-    "cta": "Shop Now"
+    "cta": "Shop Now",
+    "exclusiveCollection": "Exclusive Collection 2026",
+    "heroTitle": "The Art of Masterful Interiors.",
+    "heroSubtitle": "Elevate your living space with bespoke curtain artistry and premium furniture, where heritage craftsmanship meets modern elegance.",
+    "exploreShop": "Explore Shop",
+    "bookConsultation": "Book Consultation",
+    "scroll": "Scroll",
+    "features": {
+      "measurement": {
+        "title": "Expert Measurement",
+        "desc": "Accuracy guaranteed by our specialists."
+      },
+      "quality": {
+        "title": "Premium Quality",
+        "desc": "Only highest grade materials."
+      },
+      "delivery": {
+        "title": "Swift Delivery",
+        "desc": "Safe delivery across Malaysia."
+      }
+    },
+    "collections": {
+      "badge": "Collection 2026",
+      "curtains": {
+        "title": "Exclusive Curtain Collection",
+        "tagline": "Quality in Every Fold"
+      },
+      "furniture": {
+        "title": "Living Room Furniture",
+        "tagline": "Comfort Meets Elegance"
+      },
+      "viewAll": "VIEW ALL"
+    },
+    "consultation": {
+      "badge": "Expert Consultation",
+      "title": "Bespoke Artistry For Your Home.",
+      "subtitle": "Experience professional measurement and curated design advice in the comfort of your home, entirely complimentary.",
+      "bookAppointment": "Book Appointment",
+      "personalConsultant": "Personal Consultant",
+      "callNow": "Call Now",
+      "whatsapp": "WhatsApp"
+    },
+    "footer": {
+      "brandTagline": "Quality in every fold. Elevating Malaysian homes with premium curtains and exquisite furniture since 2026.",
+      "navHeader": "Navigation",
+      "home": "Home",
+      "products": "All Products",
+      "services": "Our Services",
+      "cart": "My Cart",
+      "contactHeader": "Contact Us",
+      "hqHeader": "HQ Address",
+      "address": "Lot 123, Jalan Langsir, Kuala Lumpur, 50480, Malaysia.",
+      "copyright": "© 2026 Fancy, Langsir & Perabot. All rights reserved.",
+      "developedBy": "Developed by"
+    }
   },
   "Navigation": {
     "home": "Home",
     "products": "Products",
     "services": "Services",
     "cart": "Cart",
-    "login": "Login"
+    "login": "Login",
+    "logout": "Logout",
+    "announcement": "QUALITY IN EVERY FOLD • FREE SHIPPING ABOVE RM500",
+    "language": "Language"
+  },
+  "FeaturedProducts": {
+    "badge": "Shop Collections",
+    "title": "Featured Selection",
+    "subtitle": "Discover our handpicked collection of premium textiles and design-forward furniture items for your home.",
+    "curtains": "Curtains",
+    "furniture": "Furniture",
+    "new": "New",
+    "addToCart": "Add to Cart",
+    "viewAll": "View All Collections"
+  },
+  "CurtainHighlight": {
+    "title": "CURTAINS",
+    "subtitle": "Langsir & Textiles",
+    "explore": "Explore"
+  },
+  "FurnitureHighlight": {
+    "title": "FURNITURE",
+    "subtitle": "Premium Sofa & Home",
+    "explore": "Explore"
+  },
+  "Testimonials": {
+    "badge": "Our Clients",
+    "title": "Testimonials"
+  },
+  "ProductDetail": {
+    "back": "Back to Products",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "quantity": "Quantity",
+    "addToCart": "Add to Cart",
+    "bookMeasurement": "Book Free Measurement",
+    "description": "Description",
+    "specifications": "Specifications",
+    "careInstructions": "Care Instructions",
+    "relatedProducts": "You May Also Like",
+    "selectVariant": "Select Option",
+    "sizeGuide": "Size Guide",
+    "reviews": "Reviews",
+    "collection": "Collection",
+    "leftInStock": "items left",
+    "trust": {
+      "guarantee": "1 Year Guarantee",
+      "shipping": "Free Shipping",
+      "returns": "30 Day Returns"
+    },
+    "specs": {
+      "material": "Primary Material",
+      "weight": "Weight",
+      "origin": "Origin",
+      "opacity": "Opacity Level",
+      "materialVal": "Premium High-Density Fabric",
+      "originVal": "Artisan Crafted in Malaysia",
+      "opacityVal": "95% Total Blackout",
+      "careVal": "To maintain the exquisite quality of your Fancy products, we recommend professional dry cleaning for all textiles. For furniture items, wipe with a microfibre cloth dampened with distilled water. Avoid harsh chemicals and direct exposure to tropical sunlight to preserve color depth."
+    }
+  },
+  "Cart": {
+    "title": "Your Selection",
+    "empty": "Your shopping bag is currently empty.",
+    "startShopping": "Explore Collection",
+    "item": "Item",
+    "quantity": "Qty",
+    "price": "Price",
+    "remove": "Remove",
+    "summary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shippingFree": "Complimentary",
+    "total": "Total Amount",
+    "checkout": "Secure Checkout",
+    "taxNote": "Taxes and shipping calculated at checkout.",
+    "back": "Continue Shopping",
+    "itemsCount": "{count} items"
   }
 }

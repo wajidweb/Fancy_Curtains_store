@@ -1,12 +1,13 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function FurnitureHighlight() {
   const locale = useLocale();
+  const t = useTranslations('FurnitureHighlight');
 
   return (
     <section className="py-24 md:py-40 bg-[#f8f8f6] overflow-hidden font-sans border-b border-gray-100">
@@ -58,11 +59,16 @@ export default function FurnitureHighlight() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-[80px] md:text-[120px] leading-[0.85] font-extrabold text-fancy-charcoal tracking-tighter uppercase mb-6">
-                FURN<br />ITURE
+              <h2 className="text-[80px] md:text-[120px] leading-[0.85] font-extrabold text-fancy-charcoal tracking-tighter uppercase mb-6 whitespace-pre-line">
+                {t('title').split('').map((char, i) => (
+                  <span key={i}>
+                    {char}
+                    {i === Math.floor(t('title').length / 2) - 1 && <br />}
+                  </span>
+                ))}
               </h2>
               <h3 className="text-sm md:text-lg tracking-[0.6em] md:tracking-[0.8em] font-extrabold text-fancy-charcoal uppercase mb-12 opacity-90">
-                Premium Sofa & Home
+                {t('subtitle')}
               </h3>
               
               <Link 
@@ -71,7 +77,7 @@ export default function FurnitureHighlight() {
               >
                 <ArrowRight size={16} className="rotate-180 group-hover:-translate-x-2 transition-transform" />
                 <span className="w-12 h-[1px] bg-fancy-charcoal group-hover:bg-fancy-maroon group-hover:w-20 transition-all duration-500"></span>
-                Explore
+                {t('explore')}
               </Link>
             </motion.div>
           </div>

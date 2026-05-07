@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import ProductCard from '@/components/product/ProductCard';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 export default function ProductsPage() {
   const t = useTranslations('Navigation');
@@ -25,16 +26,32 @@ export default function ProductsPage() {
     fetchProducts();
   }, []);
 
-  if (loading) return <div className="text-center py-20">Loading...</div>;
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center bg-[#fcfcf9]">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-fancy-maroon"></div>
+    </div>
+  );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold text-emerald-900 mb-8">{t('products')}</h1>
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {products.map((product: any) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
+    <div className="bg-[#fcfcf9] min-h-screen pt-32 md:pt-40 pb-20">
+      <div className="max-w-[1800px] mx-auto px-4 md:px-12">
+        <header className="mb-16">
+          <h1 className="text-4xl md:text-6xl font-bold text-fancy-charcoal tracking-tight mb-4">
+            {t('products')}
+          </h1>
+          <div className="w-20 h-1 bg-fancy-maroon"></div>
+        </header>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12"
+        >
+          {products.map((product: any) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </motion.div>
       </div>
     </div>
   );

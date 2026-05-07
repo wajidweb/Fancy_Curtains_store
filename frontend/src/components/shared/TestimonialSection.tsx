@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
@@ -48,6 +48,7 @@ const TESTIMONIALS: Testimonial[] = [
 
 export default function TestimonialSection() {
   const locale = useLocale() as 'ms' | 'en';
+  const t = useTranslations('Testimonials');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -89,8 +90,8 @@ export default function TestimonialSection() {
     <section className="py-12 md:py-16 bg-white font-sans overflow-hidden border-b border-gray-50">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-8">
-          <h3 className="text-[10px] tracking-[0.4em] uppercase font-bold text-fancy-maroon mb-2">Our Clients</h3>
-          <h2 className="text-2xl md:text-3xl font-bold text-fancy-charcoal tracking-tight">Testimonials</h2>
+          <h3 className="text-[10px] tracking-[0.4em] uppercase font-bold text-fancy-maroon mb-2">{t('badge')}</h3>
+          <h2 className="text-2xl md:text-3xl font-bold text-fancy-charcoal tracking-tight">{t('title')}</h2>
         </div>
 
         <div className="relative flex justify-center items-center h-[300px] md:h-[250px]">

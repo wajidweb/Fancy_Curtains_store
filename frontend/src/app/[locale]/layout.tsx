@@ -4,6 +4,7 @@ import "./globals.css";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import Navbar from "@/components/shared/Navbar";
+import CartNotification from "@/components/shared/CartNotification";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ 
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default async function RootLayout({
       <body className={`${plusJakartaSans.variable} font-sans font-medium antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
+          <CartNotification />
           {children}
         </NextIntlClientProvider>
       </body>

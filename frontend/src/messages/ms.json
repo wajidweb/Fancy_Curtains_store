@@ -2,13 +2,144 @@
   "HomePage": {
     "title": "Selamat Datang ke Fancy, Langsir & Perabot",
     "description": "Langsir dan Perabot Premium di Malaysia",
-    "cta": "Beli Sekarang"
+    "cta": "Beli Sekarang",
+    "exclusiveCollection": "Koleksi Eksklusif 2026",
+    "heroTitle": "Seni Langsir & Perabot Mewah.",
+    "heroSubtitle": "Elevasi kediaman anda dengan rekaan langsir eksklusif dan koleksi perabot premium yang menggabungkan seni ketukangan dengan gaya moden.",
+    "exploreShop": "Lihat Koleksi",
+    "bookConsultation": "Tempah Ukuran",
+    "scroll": "Skrol",
+    "features": {
+      "measurement": {
+        "title": "Ukuran Pakar",
+        "desc": "Ketepatan dijamin oleh pakar kami."
+      },
+      "quality": {
+        "title": "Kualiti Premium",
+        "desc": "Bahan gred tertinggi sahaja."
+      },
+      "delivery": {
+        "title": "Penghantaran Pantas",
+        "desc": "Penghantaran selamat ke seluruh Malaysia."
+      }
+    },
+    "collections": {
+      "badge": "Koleksi 2026",
+      "curtains": {
+        "title": "Koleksi Langsir Eksklusif",
+        "tagline": "Kualiti dalam Setiap Lipatan"
+      },
+      "furniture": {
+        "title": "Perabot Ruang Tamu",
+        "tagline": "Keselesaan Bertemu Keanggunan"
+      },
+      "viewAll": "LIHAT SEMUA"
+    },
+    "consultation": {
+      "badge": "Konsultasi Pakar",
+      "title": "Sentuhan Pakar Untuk Kediaman.",
+      "subtitle": "Dapatkan ukuran profesional dan nasihat rekaan secara percuma terus ke rumah anda.",
+      "bookAppointment": "Tempah Temujanji",
+      "personalConsultant": "Perunding Peribadi",
+      "callNow": "Hubungi Sekarang",
+      "whatsapp": "WhatsApp"
+    },
+    "footer": {
+      "brandTagline": "Kualiti dalam setiap lipatan. Mempertingkatkan kediaman rakyat Malaysia dengan langsir premium dan perabot eksklusif sejak 2026.",
+      "navHeader": "Navigasi",
+      "home": "Utama",
+      "products": "Semua Produk",
+      "services": "Perkhidmatan Kami",
+      "cart": "Bakul Saya",
+      "contactHeader": "Hubungi Kami",
+      "hqHeader": "Alamat HQ",
+      "address": "Lot 123, Jalan Langsir, Kuala Lumpur, 50480, Malaysia.",
+      "copyright": "© 2026 Fancy, Langsir & Perabot. Hak cipta terpelihara.",
+      "developedBy": "Dibangunkan oleh"
+    }
   },
   "Navigation": {
     "home": "Utama",
     "products": "Produk",
     "services": "Perkhidmatan",
     "cart": "Bakul",
-    "login": "Log Masuk"
+    "login": "Log Masuk",
+    "logout": "Log Keluar",
+    "announcement": "KUALITI DALAM SETIAP LIPATAN • PENGHANTARAN PERCUMA ATAS RM500",
+    "language": "Bahasa"
+  },
+  "FeaturedProducts": {
+    "badge": "Beli Koleksi",
+    "title": "Pilihan Terpilih",
+    "subtitle": "Temui koleksi tekstil premium dan perabot reka bentuk moden pilihan kami untuk kediaman anda.",
+    "curtains": "Langsir",
+    "furniture": "Perabot",
+    "new": "Baru",
+    "addToCart": "Tambah ke Bakul",
+    "viewAll": "Lihat Semua Koleksi"
+  },
+  "CurtainHighlight": {
+    "title": "LANGSIR",
+    "subtitle": "Langsir & Tekstil",
+    "explore": "Terokai"
+  },
+  "FurnitureHighlight": {
+    "title": "PERABOT",
+    "subtitle": "Sofa Premium & Kediaman",
+    "explore": "Terokai"
+  },
+  "Testimonials": {
+    "badge": "Pelanggan Kami",
+    "title": "Testimoni"
+  },
+  "ProductDetail": {
+    "back": "Kembali ke Produk",
+    "inStock": "Stok Tersedia",
+    "outOfStock": "Tiada Stok",
+    "quantity": "Kuantiti",
+    "addToCart": "Tambah ke Bakul",
+    "bookMeasurement": "Tempah Ukuran Percuma",
+    "description": "Penerangan",
+    "specifications": "Spesifikasi",
+    "careInstructions": "Arahan Penjagaan",
+    "relatedProducts": "Anda Mungkin Juga Suka",
+    "selectVariant": "Pilih Pilihan",
+    "sizeGuide": "Panduan Saiz",
+    "reviews": "Ulasan",
+    "collection": "Koleksi",
+    "leftInStock": "baki stok",
+    "trust": {
+      "guarantee": "Jaminan 1 Tahun",
+      "shipping": "Hantar Percuma",
+      "returns": "Pulang 30 Hari"
+    },
+    "specs": {
+      "material": "Bahan Utama",
+      "weight": "Berat",
+      "origin": "Asal",
+      "opacity": "Tahap Kelegapan",
+      "materialVal": "Fabrik Berketumpatan Tinggi Premium",
+      "originVal": "Hasil Seni di Malaysia",
+      "opacityVal": "95% Blackout Penuh",
+      "careVal": "Untuk mengekalkan kualiti produk Fancy anda, kami mengesyorkan cucian kering profesional untuk semua tekstil. Untuk perabot, lap dengan kain mikrofiber yang dilembapkan dengan air suling. Elakkan bahan kimia keras dan pendedahan terus kepada cahaya matahari tropika untuk mengekalkan kedalaman warna."
+    }
+  },
+  "Cart": {
+    "title": "Pilihan Anda",
+    "empty": "Bakul membeli-belah anda masih kosong.",
+    "startShopping": "Lihat Koleksi",
+    "item": "Barangan",
+    "quantity": "Ktt",
+    "price": "Harga",
+    "remove": "Buang",
+    "summary": "Ringkasan Pesanan",
+    "subtotal": "Jumlah Kecil",
+    "shipping": "Penghantaran",
+    "shippingFree": "Percuma",
+    "total": "Jumlah Keseluruhan",
+    "checkout": "Bayar Sekarang",
+    "taxNote": "Cukai dan penghantaran dikira semasa pembayaran.",
+    "back": "Teruskan Membeli-belah",
+    "itemsCount": "{count} barangan"
   }
 }
