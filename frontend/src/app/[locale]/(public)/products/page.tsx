@@ -99,14 +99,14 @@ export default function ProductsPage() {
             alt="Luxury Interior Background" 
             className="w-full h-full object-cover scale-105"
           />
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
         </div>
         
         <div className="relative z-10 text-center text-white px-6">
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[10px] md:text-xs tracking-[0.5em] uppercase font-bold text-fancy-maroon mb-4 block"
+            className="text-[10px] md:text-xs tracking-[0.5em] uppercase font-bold text-white mb-4 mt-4 block"
           >
             {t('hero.badge')}
           </motion.span>

@@ -8,9 +8,12 @@ import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import RevenueChart from '@/components/admin/RevenueChart';
 import OrdersChart from '@/components/admin/OrdersChart';
+import { useAuthStore } from '@/store/useAuthStore';
 
 export default function AdminDashboard() {
   const locale = useLocale();
+  const { user } = useAuthStore();
+  const [recentServices, setRecentServices] = useState<any[]>([]);
   const [stats, setStats] = useState({
     totalOrders: 0,
     totalProducts: 0,
@@ -22,11 +25,21 @@ export default function AdminDashboard() {
     // Fetch dashboard stats (mocking for now, would be a real API)
     const fetchStats = async () => {
       try {
-        const productRes = await axios.get(`${CONFIG.API_URL}/products`);
+        const productRes = await axios.get(`${CONFIG.API_URL}/products?all=true`);
+        
+        let servicesRes = { data: [] };
+        if (user?.token) {
+           servicesRes = await axios.get(`${CONFIG.API_URL}/services`, {
+             headers: { Authorization: `Bearer ${user.token}` }
+           });
+        }
+        
+        setRecentServices(servicesRes.data.slice(0, 5));
+
         setStats({
           totalOrders: 12, // Mock
           totalProducts: productRes.data.length,
-          totalServices: 5, // Mock
+          totalServices: servicesRes.data.length,
           revenue: 1450.50 // Mock
         });
       } catch (err) {
@@ -34,8 +47,22 @@ export default function AdminDashboard() {
       }
     };
 
-    fetchStats();
-  }, []);
+    if (user?.token) {
+      fetchStats();
+    }
+  }, [user]);
+
+  const getStatusColor = (s: string) => {
+    switch (s) {
+      case 'Pending': return 'bg-amber-100 text-amber-800';
+      case 'Contacted': return 'bg-blue-100 text-blue-800';
+      case 'Measurement Scheduled': return 'bg-indigo-100 text-indigo-800';
+      case 'Quotation Sent': return 'bg-purple-100 text-purple-800';
+      case 'Completed': return 'bg-green-100 text-green-800';
+      case 'Cancelled': return 'bg-red-100 text-red-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
 
   const cards = [
     { name: 'Total Orders', value: stats.totalOrders, icon: ClipboardList, color: 'bg-fancy-charcoal text-white' },
@@ -115,8 +142,27 @@ export default function AdminDashboard() {
               VIEW ALL
             </Link>
           </h2>
-          <div className="border-t border-gray-100 pt-8">
-            <p className="text-gray-400 text-sm font-bold text-center py-8 tracking-widest uppercase">Service requests appearing here soon</p>
+          <div className="border-t border-gray-100 pt-4">
+            {recentServices.length > 0 ? (
+              <ul className="divide-y divide-gray-100">
+                {recentServices.map((req) => (
+                  <li key={req._id} className="py-4 flex justify-between items-center">
+                    <div>
+                      <p className="text-sm font-bold text-fancy-charcoal truncate">{req.name}</p>
+                      <p className="text-xs text-gray-500">{req.serviceType}</p>
+                    </div>
+                    <div className="text-right">
+                      <span className={`inline-flex px-2 py-1 text-[8px] font-bold rounded-sm uppercase tracking-wider ${getStatusColor(req.status)}`}>
+                        {req.status}
+                      </span>
+                      <p className="text-[10px] text-gray-400 mt-1">{new Date(req.createdAt).toLocaleDateString()}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-gray-400 text-sm font-bold text-center py-8 tracking-widest uppercase">No recent requests</p>
+            )}
           </div>
         </div>
       </div>
