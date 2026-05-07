@@ -9,7 +9,8 @@ import {
   ShieldCheck, 
   Truck, 
   Ruler, 
-  Camera,
+  Phone,
+  Calendar,
   User
 } from 'lucide-react';
 import Link from 'next/link';
@@ -196,80 +197,76 @@ export default function HomePage() {
       <TestimonialSection />
 
       {/* 6. PREMIUM CONSULTATION CTA */}
-      <section className="bg-fancy-charcoal py-24 md:py-40 text-white relative overflow-hidden">
-        {/* Background Decorative Elements */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-fancy-maroon/10 rounded-full blur-3xl -mr-64 -mt-64"></div>
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-fancy-maroon/5 rounded-full blur-2xl -ml-32 -mb-32"></div>
-
+      <section className="bg-fancy-charcoal py-24 md:py-32 text-white relative">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-20">
+          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
             
             {/* Left: Content */}
             <div className="w-full lg:w-1/2 text-center lg:text-left">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-[10px] tracking-[0.3em] uppercase font-bold mb-8">
+                {t('consultation.badge')}
+              </div>
+              
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-[1.1] tracking-tight text-white">
+                {t('consultation.title')}
+              </h2>
+              <p className="text-base md:text-lg font-medium text-gray-300 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                {t('consultation.subtitle')}
+              </p>
+              
+              <Link 
+                href={`/${locale}/services`}
+                className="inline-flex items-center justify-center gap-4 bg-white text-fancy-charcoal px-8 py-5 text-xs tracking-[0.3em] uppercase font-black hover:bg-fancy-maroon hover:text-white transition-all duration-300 rounded-sm shadow-md"
               >
-                <h3 className="text-xs tracking-[0.6em] uppercase font-bold text-fancy-maroon mb-6">{t('consultation.badge')}</h3>
-                <h2 className="text-4xl md:text-7xl font-bold mb-8 leading-tight">
-                  {t('consultation.title')}
-                </h2>
-                <p className="text-lg md:text-xl font-medium text-gray-400 mb-12 max-w-xl leading-relaxed">
-                  {t('consultation.subtitle')}
-                </p>
-                <Link 
-                  href={`/${locale}/services`}
-                  className="inline-flex items-center gap-4 bg-white text-fancy-charcoal px-10 py-5 text-xs tracking-[0.4em] uppercase font-extrabold hover:bg-fancy-maroon hover:text-white transition-all duration-500 rounded-sm"
-                >
-                  {t('consultation.bookAppointment')} <ArrowRight size={18} />
-                </Link>
-              </motion.div>
+                <Calendar size={18} />
+                {t('consultation.bookAppointment')} 
+              </Link>
             </div>
 
             {/* Right: Contact Cards */}
-            <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="w-full lg:w-1/2 flex flex-col gap-6">
               {[
-                { name: CONFIG.CONTACT.NAME_1, phone: `00${CONFIG.CONTACT.WHATSAPP_1}`, wa: CONFIG.CONTACT.WHATSAPP_1 },
-                { name: CONFIG.CONTACT.NAME_2, phone: `00${CONFIG.CONTACT.WHATSAPP_2}`, wa: CONFIG.CONTACT.WHATSAPP_2 }
+                { name: CONFIG.CONTACT.NAME_1, phone: `00${CONFIG.CONTACT.WHATSAPP_1}`, wa: CONFIG.CONTACT.WHATSAPP_1, role: "Senior Designer" },
+                { name: CONFIG.CONTACT.NAME_2, phone: `00${CONFIG.CONTACT.WHATSAPP_2}`, wa: CONFIG.CONTACT.WHATSAPP_2, role: "Textile Expert" }
               ].map((contact, idx) => (
-                <motion.div
+                <div
                   key={idx}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 * idx }}
-                  className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all duration-500 group"
+                  className="bg-[#2a2a2a] border border-gray-700 hover:border-gray-500 rounded-xl p-6 md:p-8 transition-colors"
                 >
-                  <div className="w-12 h-12 bg-fancy-maroon rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <User size={24} />
-                  </div>
-                  <h4 className="text-lg font-bold mb-1 tracking-tight">{contact.name}</h4>
-                  <p className="text-gray-400 text-sm mb-8 font-medium uppercase tracking-widest italic">{t('consultation.personalConsultant')}</p>
-                  
-                  <div className="space-y-4">
-                    <a 
-                      href={`tel:${contact.phone}`}
-                      className="flex items-center gap-4 text-xs font-bold tracking-[0.2em] uppercase hover:text-fancy-maroon transition-colors"
-                    >
-                      <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-fancy-maroon transition-colors">
-                        <Camera size={14} /> {/* Using Camera for generic contact as per previous constraint */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                    <div className="flex items-center gap-5">
+                      <div className="relative">
+                        <div className="w-14 h-14 bg-gray-800 rounded-full flex items-center justify-center border border-gray-600 shadow-sm">
+                          <User size={24} className="text-white" />
+                        </div>
+                        <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-[#2a2a2a] rounded-full"></div>
                       </div>
-                      {t('consultation.callNow')}
-                    </a>
-                    <a 
-                      href={`https://wa.me/${contact.wa}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 text-xs font-bold tracking-[0.2em] uppercase hover:text-green-500 transition-colors"
-                    >
-                      <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-green-500 transition-colors">
-                        <MessageCircle size={14} />
+                      <div>
+                        <h4 className="text-xl font-bold tracking-tight text-white mb-1">{contact.name}</h4>
+                        <p className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">{contact.role}</p>
                       </div>
-                      {t('consultation.whatsapp')}
-                    </a>
+                    </div>
+                    
+                    <div className="flex gap-3">
+                      <a 
+                        href={`tel:${contact.phone}`}
+                        className="w-12 h-12 rounded-full bg-gray-800 border border-gray-600 flex items-center justify-center text-white hover:bg-white hover:text-fancy-charcoal transition-colors shadow-sm"
+                        title={t('consultation.callNow')}
+                      >
+                        <Phone size={18} />
+                      </a>
+                      <a 
+                        href={`https://wa.me/${contact.wa}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 rounded-full bg-gray-800 border border-gray-600 flex items-center justify-center text-white hover:bg-[#25D366] hover:border-[#25D366] transition-colors shadow-sm"
+                        title={t('consultation.whatsapp')}
+                      >
+                        <MessageCircle size={18} />
+                      </a>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
