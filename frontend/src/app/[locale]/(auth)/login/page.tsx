@@ -33,7 +33,7 @@ export default function LoginPage() {
         password,
       });
       setUser(data);
-      router.push(`/${locale}`);
+      router.push(`/${locale}/admin/dashboard`);
     } catch (err: any) {
       setError(err.response?.data?.message || t('error'));
     } finally {

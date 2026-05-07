@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LangSwitcher from './LangSwitcher';
-import { ShoppingCart, User, LogOut, LayoutDashboard, Menu, X, Package } from 'lucide-react';
+import { ShoppingCart, User, Menu, X, Package } from 'lucide-react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useCartStore } from '@/store/useCartStore';
 import { useState, useEffect } from 'react';
@@ -14,7 +14,7 @@ export default function Navbar() {
   const t = useTranslations('Navigation');
   const locale = useLocale();
   const pathname = usePathname();
-  const { user, logout, isAdmin } = useAuthStore();
+  const { user, isAdmin } = useAuthStore();
   const { getTotalItems } = useCartStore();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -102,16 +102,20 @@ export default function Navbar() {
                 {user ? (
                   <>
                     {isAdmin() && (
-                      <Link href={`/${locale}/admin/dashboard`} className="text-amber-600 hover:text-amber-700 transition-colors p-1" title="Dashboard">
-                        <LayoutDashboard size={22} strokeWidth={2.5} />
+                      <Link 
+                        href={`/${locale}/admin/dashboard`} 
+                        className={`text-[10px] sm:text-[11px] tracking-[0.2em] px-4 py-2 border rounded-sm transition-colors uppercase font-bold ${
+                          showWhiteNavbar 
+                            ? 'border-fancy-charcoal text-fancy-charcoal hover:bg-fancy-charcoal hover:text-white' 
+                            : 'border-white text-white hover:bg-white hover:text-fancy-charcoal'
+                        }`}
+                      >
+                        Dashboard
                       </Link>
                     )}
                     <Link href={`/${locale}/profile/orders`} className={`transition-colors hover:text-fancy-maroon p-1 ${showWhiteNavbar ? 'text-fancy-charcoal' : 'text-white'}`} title={t('orders')}>
                       <Package size={22} strokeWidth={2.5} />
                     </Link>
-                    <button onClick={logout} className={`transition-colors hover:text-red-600 p-1 ${showWhiteNavbar ? 'text-fancy-charcoal' : 'text-white'}`} title={t('logout')}>
-                      <LogOut size={22} strokeWidth={2.5} />
-                    </button>
                   </>
                 ) : (
                   <Link href={`/${locale}/login`} className={`transition-colors hover:text-fancy-maroon p-1 ${showWhiteNavbar ? 'text-fancy-charcoal' : 'text-white'}`}>
@@ -172,13 +176,14 @@ export default function Navbar() {
                   {t('login')}
                 </Link>
               )}
-              {user && (
-                <button 
-                  onClick={() => { logout(); setIsMobileMenuOpen(false); }}
-                  className="text-red-600 border border-red-100 py-4 px-6 rounded-sm text-center tracking-[0.3em]"
+              {user && isAdmin() && (
+                <Link 
+                  href={`/${locale}/admin/dashboard`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="bg-fancy-charcoal text-white py-4 px-6 rounded-sm text-center tracking-[0.3em]"
                 >
-                  {t('logout')}
-                </button>
+                  Dashboard
+                </Link>
               )}
             </div>
           </motion.div>
