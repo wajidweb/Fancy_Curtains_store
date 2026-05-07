@@ -7,6 +7,7 @@ import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { CreditCard, Truck, CheckCircle, ArrowLeft } from 'lucide-react';
+import { CONFIG } from '@/config';
 
 export default function CheckoutPage() {
   const { items, getTotalPrice, clearCart } = useCartStore();
@@ -45,7 +46,7 @@ export default function CheckoutPage() {
         totalPrice: getTotalPrice(),
       };
 
-      await axios.post('http://localhost:5001/api/orders', orderData, {
+      await axios.post(`${CONFIG.API_URL}/orders`, orderData, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
 

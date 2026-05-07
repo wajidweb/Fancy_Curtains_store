@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import axios from 'axios';
 import { Calendar, MapPin, Phone, User, MessageSquare, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { CONFIG } from '@/config';
 
 export default function ServiceBookingPage() {
   const locale = useLocale();
@@ -27,7 +28,7 @@ export default function ServiceBookingPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5001/api/services', formData);
+      await axios.post(`${CONFIG.API_URL}/services`, formData);
       setSubmitted(true);
     } catch (err) {
       alert('Failed to book service. Please try again.');

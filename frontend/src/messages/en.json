@@ -141,5 +141,25 @@
     "taxNote": "Taxes and shipping calculated at checkout.",
     "back": "Continue Shopping",
     "itemsCount": "{count} items"
+  },
+  "Products": {
+    "hero": {
+      "badge": "2026 Collection",
+      "title": "Our Full Collections",
+      "subtitle": "Explore our curated range of premium curtains and bespoke furniture designed to elevate your living experience."
+    },
+    "filters": {
+      "title": "Filters",
+      "categories": "Categories",
+      "all": "All Collections",
+      "curtains": "Premium Curtains",
+      "furniture": "Luxury Furniture",
+      "sortBy": "Sort By",
+      "newest": "Newest Arrival",
+      "priceLow": "Price: Low to High",
+      "priceHigh": "Price: High to Low",
+      "search": "Search products...",
+      "noResults": "No products found matching your criteria."
+    }
   }
 }

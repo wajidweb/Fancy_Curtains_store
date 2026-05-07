@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import axios from 'axios';
 import { Plus, Edit, Trash2, Check, X } from 'lucide-react';
+import { CONFIG } from '@/config';
 
 export default function AdminProductsPage() {
   const { user, isAdmin } = useAuthStore();
@@ -29,7 +30,7 @@ export default function AdminProductsPage() {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5001/api/products');
+      const { data } = await axios.get(`${CONFIG.API_URL}/products`);
       setProducts(data);
     } catch (err) {
       console.error('Failed to fetch products');
@@ -46,7 +47,7 @@ export default function AdminProductsPage() {
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure?')) {
       try {
-        await axios.delete(`http://localhost:5001/api/products/${id}`, {
+        await axios.delete(`${CONFIG.API_URL}/products/${id}`, {
           headers: { Authorization: `Bearer ${user?.token}` }
         });
         fetchProducts();
@@ -60,11 +61,11 @@ export default function AdminProductsPage() {
     e.preventDefault();
     try {
       if (editingProduct) {
-        await axios.put(`http://localhost:5001/api/products/${editingProduct._id}`, formData, {
+        await axios.put(`${CONFIG.API_URL}/products/${editingProduct._id}`, formData, {
           headers: { Authorization: `Bearer ${user?.token}` }
         });
       } else {
-        await axios.post('http://localhost:5001/api/products', formData, {
+        await axios.post(`${CONFIG.API_URL}/products`, formData, {
           headers: { Authorization: `Bearer ${user?.token}` }
         });
       }

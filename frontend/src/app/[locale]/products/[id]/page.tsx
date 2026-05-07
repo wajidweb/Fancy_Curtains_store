@@ -22,6 +22,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import LatestProducts from '@/components/shared/LatestProducts';
 import Footer from '@/components/shared/Footer';
+import { CONFIG } from '@/config';
 
 interface Product {
   _id: string;
@@ -56,7 +57,7 @@ export default function ProductDetailPage() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5001/api/products/${id}`);
+        const { data } = await axios.get(`${CONFIG.API_URL}/products/${id}`);
         setProduct(data);
       } catch (error) {
         console.error('Error fetching product', error);

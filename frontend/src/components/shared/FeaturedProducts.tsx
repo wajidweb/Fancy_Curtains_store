@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCartStore } from '@/store/useCartStore';
 import axios from 'axios';
+import { CONFIG } from '@/config';
 
 interface Product {
   _id: string;
@@ -28,7 +29,7 @@ export default function FeaturedProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5001/api/products');
+        const { data } = await axios.get(`${CONFIG.API_URL}/products`);
         setAllProducts(data);
       } catch (error) {
         console.error('Error fetching products', error);

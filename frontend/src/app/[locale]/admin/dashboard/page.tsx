@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import axios from 'axios';
 import { ShoppingBag, Users, ClipboardList, TrendingUp } from 'lucide-react';
+import { CONFIG } from '@/config';
 
 export default function AdminDashboard() {
   const { user, isAdmin } = useAuthStore();
@@ -26,7 +27,7 @@ export default function AdminDashboard() {
     // Fetch dashboard stats (mocking for now, would be a real API)
     const fetchStats = async () => {
       try {
-        const productRes = await axios.get('http://localhost:5001/api/products');
+        const productRes = await axios.get(`${CONFIG.API_URL}/products`);
         // In a real app, we'd have a specific stats endpoint
         setStats({
           totalOrders: 12, // Mock

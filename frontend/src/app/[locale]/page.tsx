@@ -19,6 +19,7 @@ import CurtainHighlight from '@/components/shared/CurtainHighlight';
 import FurnitureHighlight from '@/components/shared/FurnitureHighlight';
 import TestimonialSection from '@/components/shared/TestimonialSection';
 import Footer from '@/components/shared/Footer';
+import { CONFIG } from '@/config';
 
 export default function HomePage() {
   const t = useTranslations('HomePage');
@@ -227,8 +228,8 @@ export default function HomePage() {
             {/* Right: Contact Cards */}
             <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
-                { name: 'Fazal Subhan', phone: '0060199218203', wa: '60199218203' },
-                { name: 'Nadir Khan', phone: '0060129291483', wa: '60129291483' }
+                { name: CONFIG.CONTACT.NAME_1, phone: `00${CONFIG.CONTACT.WHATSAPP_1}`, wa: CONFIG.CONTACT.WHATSAPP_1 },
+                { name: CONFIG.CONTACT.NAME_2, phone: `00${CONFIG.CONTACT.WHATSAPP_2}`, wa: CONFIG.CONTACT.WHATSAPP_2 }
               ].map((contact, idx) => (
                 <motion.div
                   key={idx}

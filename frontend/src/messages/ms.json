@@ -141,5 +141,25 @@
     "taxNote": "Cukai dan penghantaran dikira semasa pembayaran.",
     "back": "Teruskan Membeli-belah",
     "itemsCount": "{count} barangan"
+  },
+  "Products": {
+    "hero": {
+      "badge": "Koleksi 2026",
+      "title": "Koleksi Lengkap Kami",
+      "subtitle": "Terokai rangkaian pilihan langsir premium dan perabot eksklusif kami yang direka untuk mempertingkatkan gaya hidup anda."
+    },
+    "filters": {
+      "title": "Penapis",
+      "categories": "Kategori",
+      "all": "Semua Koleksi",
+      "curtains": "Langsir Premium",
+      "furniture": "Perabot Mewah",
+      "sortBy": "Susun Mengikut",
+      "newest": "Terbaru",
+      "priceLow": "Harga: Rendah ke Tinggi",
+      "priceHigh": "Harga: Tinggi ke Rendah",
+      "search": "Cari produk...",
+      "noResults": "Tiada produk yang sepadan dengan kriteria anda."
+    }
   }
 }

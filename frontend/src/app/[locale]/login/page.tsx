@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import axios from 'axios';
 import { useAuthStore } from '@/store/useAuthStore';
 import Link from 'next/link';
+import { CONFIG } from '@/config';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -24,7 +25,7 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const { data } = await axios.post('http://localhost:5001/api/auth/login', {
+      const { data } = await axios.post(`${CONFIG.API_URL}/auth/login`, {
         email,
         password,
       });

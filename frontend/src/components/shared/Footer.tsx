@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { Camera, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
+import { CONFIG } from '@/config';
 
 export default function Footer() {
   const t = useTranslations('HomePage');
@@ -50,28 +51,28 @@ export default function Footer() {
           <ul className="space-y-6">
             <li>
               <a 
-                href="https://wa.me/60199218203" 
+                href={`https://wa.me/${CONFIG.CONTACT.WHATSAPP_1}`}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex flex-col group"
               >
-                <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Fazal Subhan</span>
+                <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">{CONFIG.CONTACT.NAME_1}</span>
                 <span className="text-sm font-bold text-fancy-charcoal group-hover:text-fancy-maroon transition-colors flex items-center gap-2">
-                  0060199218203 
+                  00{CONFIG.CONTACT.WHATSAPP_1} 
                   <MessageCircle size={14} className="text-green-500" />
                 </span>
               </a>
             </li>
             <li>
               <a 
-                href="https://wa.me/60129291483" 
+                href={`https://wa.me/${CONFIG.CONTACT.WHATSAPP_2}`}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex flex-col group"
               >
-                <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Nadir Khan</span>
+                <span className="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">{CONFIG.CONTACT.NAME_2}</span>
                 <span className="text-sm font-bold text-fancy-charcoal group-hover:text-fancy-maroon transition-colors flex items-center gap-2">
-                  0060129291483
+                  00{CONFIG.CONTACT.WHATSAPP_2}
                   <MessageCircle size={14} className="text-green-500" />
                 </span>
               </a>

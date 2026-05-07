@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import ProductCard from '@/components/product/ProductCard';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import { CONFIG } from '@/config';
 
 export default function LatestProducts() {
   const locale = useLocale();
@@ -15,7 +16,7 @@ export default function LatestProducts() {
   useEffect(() => {
     const fetchLatest = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5001/api/products');
+        const { data } = await axios.get(`${CONFIG.API_URL}/products`);
         // Sort by createdAt descending and take top 4
         const latest = data
           .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
