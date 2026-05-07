@@ -37,6 +37,13 @@ interface Product {
     priceModifier: number;
     stock: number;
   }>;
+  specifications?: {
+    material?: { ms: string; en: string };
+    weight?: { ms: string; en: string };
+    origin?: { ms: string; en: string };
+    opacity?: { ms: string; en: string };
+  };
+  careInstructions?: { ms: string; en: string };
 }
 
 export default function ProductDetailPage() {
@@ -71,11 +78,15 @@ export default function ProductDetailPage() {
   const handleAddToCart = () => {
     if (!product) return;
     const finalPrice = product.price + (product.variants[selectedVariant]?.priceModifier || 0);
+    const cartImage = product.images[0] 
+      ? (product.images[0].startsWith('http') ? product.images[0] : `${CONFIG.API_URL.replace('/api', '')}${product.images[0]}`)
+      : '/placeholder.jpg';
+      
     addItem({
       id: product._id,
       name: product.name,
       price: finalPrice,
-      image: product.images[0] || '/placeholder.jpg',
+      image: cartImage,
       quantity: quantity,
       selectedVariant: product.variants[selectedVariant]?.label[locale],
     });
@@ -124,7 +135,7 @@ export default function ProductDetailPage() {
                   onClick={() => setActiveImage(idx)}
                   className={`relative flex-shrink-0 w-20 md:w-24 aspect-[4/5] rounded-sm overflow-hidden border-2 transition-all ${activeImage === idx ? 'border-fancy-maroon shadow-md' : 'border-gray-100 hover:border-gray-300'}`}
                 >
-                  <img src={img} alt={`${product.name[locale]} ${idx + 1}`} className="w-full h-full object-cover" />
+                  <img src={img.startsWith('http') ? img : `${CONFIG.API_URL.replace('/api', '')}${img}`} alt={`${product.name[locale]} ${idx + 1}`} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
@@ -134,7 +145,7 @@ export default function ProductDetailPage() {
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeImage}
-                  src={product.images[activeImage]}
+                  src={product.images[activeImage]?.startsWith('http') ? product.images[activeImage] : `${CONFIG.API_URL.replace('/api', '')}${product.images[activeImage]}`}
                   alt={product.name[locale]}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -327,27 +338,27 @@ export default function ProductDetailPage() {
                   <div className="space-y-6">
                     <div className="grid grid-cols-2 py-4 border-b border-gray-50 italic">
                       <span className="font-extrabold text-fancy-charcoal uppercase tracking-widest text-[11px]">{t('specs.material')}</span>
-                      <span className="text-right text-gray-500">{t('specs.materialVal')}</span>
+                      <span className="text-right text-gray-500">{product.specifications?.material?.[locale] || t('specs.materialVal')}</span>
                     </div>
                     <div className="grid grid-cols-2 py-4 border-b border-gray-50 italic">
                       <span className="font-extrabold text-fancy-charcoal uppercase tracking-widest text-[11px]">{t('specs.weight')}</span>
-                      <span className="text-right text-gray-500">Approx. 1.5kg / Unit</span>
+                      <span className="text-right text-gray-500">{product.specifications?.weight?.[locale] || 'Approx. 1.5kg / Unit'}</span>
                     </div>
                     <div className="grid grid-cols-2 py-4 border-b border-gray-50 italic">
                       <span className="font-extrabold text-fancy-charcoal uppercase tracking-widest text-[11px]">{t('specs.origin')}</span>
-                      <span className="text-right text-gray-500">{t('specs.originVal')}</span>
+                      <span className="text-right text-gray-500">{product.specifications?.origin?.[locale] || t('specs.originVal')}</span>
                     </div>
                     {product.category === 'curtains' && (
                       <div className="grid grid-cols-2 py-4 border-b border-gray-50 italic">
                         <span className="font-extrabold text-fancy-charcoal uppercase tracking-widest text-[11px]">{t('specs.opacity')}</span>
-                        <span className="text-right text-gray-500">{t('specs.opacityVal')}</span>
+                        <span className="text-right text-gray-500">{product.specifications?.opacity?.[locale] || t('specs.opacityVal')}</span>
                       </div>
                     )}
                   </div>
                 )}
                 {activeTab === 'care' && (
                   <div className="text-gray-500 font-medium leading-[2.2] text-center italic">
-                    {t('specs.careVal')}
+                    {product.careInstructions?.[locale] || t('specs.careVal')}
                   </div>
                 )}
               </motion.div>

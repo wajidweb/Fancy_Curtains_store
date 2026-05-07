@@ -45,11 +45,15 @@ export default function FeaturedProducts() {
   const handleAddToCart = (e: React.MouseEvent, product: Product) => {
     e.preventDefault();
     e.stopPropagation();
+    const cartImage = product.images[0] 
+      ? (product.images[0].startsWith('http') ? product.images[0] : `${CONFIG.API_URL.replace('/api', '')}${product.images[0]}`)
+      : '/placeholder.jpg';
+
     addItem({
       id: product._id,
       name: product.name,
       price: product.price,
-      image: product.images[0] || '/placeholder.jpg',
+      image: cartImage,
       quantity: 1,
     });
   };
@@ -93,7 +97,12 @@ export default function FeaturedProducts() {
         {/* Grid - 1 column on small screens */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           <AnimatePresence mode="wait">
-            {products.map((product) => (
+            {products.map((product) => {
+              const displayImage = product.images[0] 
+                ? (product.images[0].startsWith('http') ? product.images[0] : `${CONFIG.API_URL.replace('/api', '')}${product.images[0]}`)
+                : null;
+
+              return (
               <motion.div
                 key={product._id}
                 initial={{ opacity: 0, y: 20 }}
@@ -105,11 +114,17 @@ export default function FeaturedProducts() {
                 <Link href={`/${locale}/products/${product._id}`} className="flex flex-col flex-1">
                   {/* Image Container */}
                   <div className="relative aspect-[4/5] overflow-hidden bg-[#f5f5f5]">
-                    <img
-                      src={product.images[0]}
-                      alt={product.name[locale]}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    />
+                    {displayImage ? (
+                      <img
+                        src={displayImage}
+                        alt={product.name[locale]}
+                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                        No Image
+                      </div>
+                    )}
 
                     {/* Badges */}
                     {product.isNew && (
@@ -148,7 +163,7 @@ export default function FeaturedProducts() {
 
                   {/* Content - Now part of the Link */}
                   <div className="flex flex-col items-center md:items-start p-6 text-center md:text-left flex-1 bg-white">
-                    <div className="flex flex-col justify-between items-center md:items-start w-full mb-6 gap-2">
+                    <div className="flex flex-col justify-between items-center md:items-start w-full mb-2 gap-2">
                       <h3 className="text-[14px] md:text-sm tracking-[0.05em] uppercase font-bold text-fancy-charcoal group-hover:text-fancy-maroon transition-colors line-clamp-2">
                         {product.name[locale]}
                       </h3>
@@ -156,17 +171,11 @@ export default function FeaturedProducts() {
                         RM {product.price.toFixed(2)}
                       </p>
                     </div>
-                    
-                    {/* Colors Preview */}
-                    <div className="flex gap-2">
-                      <div className="w-4 h-4 rounded-full bg-fancy-maroon border border-gray-100 cursor-pointer hover:scale-125 transition-transform shadow-sm"></div>
-                      <div className="w-4 h-4 rounded-full bg-[#1a3a3a] border border-gray-100 cursor-pointer hover:scale-125 transition-transform shadow-sm"></div>
-                      <div className="w-4 h-4 rounded-full bg-[#d2b48c] border border-gray-100 cursor-pointer hover:scale-125 transition-transform shadow-sm"></div>
-                    </div>
                   </div>
                 </Link>
               </motion.div>
-            ))}
+              );
+            })}
           </AnimatePresence>
         </div>
         

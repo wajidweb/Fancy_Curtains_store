@@ -5,7 +5,8 @@ const Product = require('../models/Product');
 // @access  Public
 const getProducts = async (req, res) => {
   try {
-    const products = await Product.find({ isActive: true });
+    const query = req.query.all === 'true' ? {} : { isActive: true };
+    const products = await Product.find(query);
     res.json(products);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -33,17 +34,29 @@ const getProductById = async (req, res) => {
 // @access  Private/Admin
 const createProduct = async (req, res) => {
   try {
-    const { name, description, price, category, images, stock, variants, slug } = req.body;
+    const data = typeof req.body.data === 'string' ? JSON.parse(req.body.data) : req.body;
+    const { name, description, price, category, stock, variants, slug, isFeatured, isActive, specifications, careInstructions } = data;
+
+    let images = data.images || [];
+    
+    if (req.files && req.files.length > 0) {
+      const uploadedImages = req.files.map(file => `/uploads/${file.filename}`);
+      images = [...images, ...uploadedImages];
+    }
 
     const product = new Product({
       name,
       description,
-      price,
+      price: Number(price),
       category,
       images,
-      stock,
+      stock: Number(stock),
       variants,
       slug,
+      isFeatured,
+      isActive,
+      specifications,
+      careInstructions
     });
 
     const createdProduct = await product.save();
@@ -58,19 +71,30 @@ const createProduct = async (req, res) => {
 // @access  Private/Admin
 const updateProduct = async (req, res) => {
   try {
-    const { name, description, price, category, images, stock, variants, isActive } = req.body;
+    const data = typeof req.body.data === 'string' ? JSON.parse(req.body.data) : req.body;
+    const { name, description, price, category, stock, variants, isActive, isFeatured, specifications, careInstructions } = data;
+
+    let images = data.images || [];
+
+    if (req.files && req.files.length > 0) {
+      const uploadedImages = req.files.map(file => `/uploads/${file.filename}`);
+      images = [...images, ...uploadedImages];
+    }
 
     const product = await Product.findById(req.params.id);
 
     if (product) {
       product.name = name || product.name;
       product.description = description || product.description;
-      product.price = price || product.price;
+      product.price = price !== undefined ? Number(price) : product.price;
       product.category = category || product.category;
-      product.images = images || product.images;
-      product.stock = stock || product.stock;
+      product.images = images.length > 0 ? images : product.images;
+      product.stock = stock !== undefined ? Number(stock) : product.stock;
       product.variants = variants || product.variants;
       product.isActive = isActive !== undefined ? isActive : product.isActive;
+      product.isFeatured = isFeatured !== undefined ? isFeatured : product.isFeatured;
+      product.specifications = specifications || product.specifications;
+      product.careInstructions = careInstructions || product.careInstructions;
 
       const updatedProduct = await product.save();
       res.json(updatedProduct);

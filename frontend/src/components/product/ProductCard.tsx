@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
 import { motion } from 'framer-motion';
+import { CONFIG } from '@/config';
 
 interface ProductCardProps {
   product: {
@@ -22,14 +23,22 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+    const cartImage = product.images[0] 
+      ? (product.images[0].startsWith('http') ? product.images[0] : `${CONFIG.API_URL.replace('/api', '')}${product.images[0]}`)
+      : '/placeholder.jpg';
+      
     addItem({
       id: product._id,
       name: product.name,
       price: product.price,
-      image: product.images[0] || '/placeholder.jpg',
+      image: cartImage,
       quantity: 1,
     });
   };
+
+  const displayImage = product.images[0] 
+    ? (product.images[0].startsWith('http') ? product.images[0] : `${CONFIG.API_URL.replace('/api', '')}${product.images[0]}`)
+    : null;
 
   return (
     <motion.div 
@@ -40,9 +49,9 @@ export default function ProductCard({ product }: ProductCardProps) {
     >
       <Link href={`/${locale}/products/${product._id}`}>
         <div className="relative aspect-[4/5] overflow-hidden bg-[#f5f5f5] mb-6 rounded-sm shadow-sm">
-          {product.images[0] ? (
+          {displayImage ? (
             <img
-              src={product.images[0]}
+              src={displayImage}
               alt={product.name[locale]}
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
             />

@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./src/config/db');
+const path = require('path');
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.use('/api/auth', require('./src/routes/authRoutes'));
 app.use('/api/products', require('./src/routes/productRoutes'));
 app.use('/api/orders', require('./src/routes/orderRoutes'));
 app.use('/api/services', require('./src/routes/serviceRoutes'));
+
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 app.get('/', (req, res) => {
   res.send('API is running...');

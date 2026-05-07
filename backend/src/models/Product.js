@@ -30,6 +30,16 @@ const productSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
+  specifications: {
+    material: { ms: String, en: String },
+    weight: { ms: String, en: String },
+    origin: { ms: String, en: String },
+    opacity: { ms: String, en: String },
+  },
+  careInstructions: {
+    ms: String,
+    en: String,
+  },
   variants: [
     {
       label: {
