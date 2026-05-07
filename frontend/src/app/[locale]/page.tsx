@@ -32,13 +32,15 @@ export default function HomePage() {
       title: t('collections.curtains.title'),
       tagline: t('collections.curtains.tagline'),
       image: 'https://images.unsplash.com/photo-1577926606472-fc6d3a33f7e1?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=1000&auto=format&fit=crop',
-      color: 'bg-fancy-maroon'
+      color: 'bg-fancy-maroon',
+      category: 'curtains'
     },
     {
       title: t('collections.furniture.title'),
       tagline: t('collections.furniture.tagline'),
       image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1000&auto=format&fit=crop',
-      color: 'bg-fancy-charcoal'
+      color: 'bg-fancy-charcoal',
+      category: 'furniture'
     }
   ];
 
@@ -169,7 +171,7 @@ export default function HomePage() {
                   <h2 className="text-3xl md:text-5xl lg:text-6xl mb-4 md:mb-8 leading-tight max-w-lg font-bold">{col.title}</h2>
                   <p className="text-sm md:text-xl font-medium mb-8 md:mb-14 opacity-90 italic max-w-md leading-relaxed">{col.tagline}</p>
                   <Link 
-                    href={`/${locale}/products`}
+                    href={`/${locale}/products?category=${col.category}`}
                     className="w-fit flex items-center text-[11px] md:text-xs tracking-[0.3em] uppercase font-bold border-b border-white pb-3 hover:translate-x-3 transition-transform duration-300"
                   >
                     {t('collections.viewAll')} <ArrowRight size={18} className="ml-4" />

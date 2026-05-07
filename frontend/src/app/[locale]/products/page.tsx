@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import ProductCard from '@/components/product/ProductCard';
 import axios from 'axios';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CONFIG } from '@/config';
 import Footer from '@/components/shared/Footer';
@@ -21,6 +22,7 @@ import {
 export default function ProductsPage() {
   const t = useTranslations('Products');
   const locale = useLocale() as 'ms' | 'en';
+  const searchParams = useSearchParams();
   
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,6 +30,16 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  // Sync category filter with URL search params
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    } else {
+      setSelectedCategory('all');
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const fetchProducts = async () => {
