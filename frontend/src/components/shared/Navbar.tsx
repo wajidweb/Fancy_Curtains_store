@@ -4,7 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LangSwitcher from './LangSwitcher';
-import { ShoppingCart, User, LogOut, LayoutDashboard, Menu, X } from 'lucide-react';
+import { ShoppingCart, User, LogOut, LayoutDashboard, Menu, X, Package } from 'lucide-react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useCartStore } from '@/store/useCartStore';
 import { useState, useEffect } from 'react';
@@ -102,11 +102,14 @@ export default function Navbar() {
                 {user ? (
                   <>
                     {isAdmin() && (
-                      <Link href={`/${locale}/admin/dashboard`} className="text-amber-600 hover:text-amber-700 transition-colors p-1">
+                      <Link href={`/${locale}/admin/dashboard`} className="text-amber-600 hover:text-amber-700 transition-colors p-1" title="Dashboard">
                         <LayoutDashboard size={22} strokeWidth={2.5} />
                       </Link>
                     )}
-                    <button onClick={logout} className={`transition-colors hover:text-red-600 p-1 ${showWhiteNavbar ? 'text-fancy-charcoal' : 'text-white'}`}>
+                    <Link href={`/${locale}/profile/orders`} className={`transition-colors hover:text-fancy-maroon p-1 ${showWhiteNavbar ? 'text-fancy-charcoal' : 'text-white'}`} title={t('orders')}>
+                      <Package size={22} strokeWidth={2.5} />
+                    </Link>
+                    <button onClick={logout} className={`transition-colors hover:text-red-600 p-1 ${showWhiteNavbar ? 'text-fancy-charcoal' : 'text-white'}`} title={t('logout')}>
                       <LogOut size={22} strokeWidth={2.5} />
                     </button>
                   </>
@@ -143,6 +146,18 @@ export default function Navbar() {
                   <X size={14} className="opacity-0" /> {/* Spacer */}
                 </Link>
               ))}
+              
+              {user && (
+                <Link
+                  href={`/${locale}/profile/orders`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="hover:text-fancy-maroon transition-colors flex justify-between items-center"
+                >
+                  {t('orders')}
+                  <Package size={18} />
+                </Link>
+              )}
+
               <div className="h-[1px] bg-gray-100 my-2"></div>
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-gray-400">{t('language')}</span>

@@ -65,6 +65,7 @@
     "cart": "Bakul",
     "login": "Log Masuk",
     "logout": "Log Keluar",
+    "orders": "Pesanan Saya",
     "announcement": "KUALITI DALAM SETIAP LIPATAN • PENGHANTARAN PERCUMA ATAS RM500",
     "language": "Bahasa"
   },
@@ -121,7 +122,7 @@
       "materialVal": "Fabrik Berketumpatan Tinggi Premium",
       "originVal": "Hasil Seni di Malaysia",
       "opacityVal": "95% Blackout Penuh",
-      "careVal": "Untuk mengekalkan kualiti produk Fancy anda, kami mengesyorkan cucian kering profesional untuk semua tekstil. Untuk perabot, lap dengan kain mikrofiber yang dilembapkan dengan air suling. Elakkan bahan kimia keras dan pendedahan terus kepada cahaya matahari tropika untuk mengekalkan kedalaman warna."
+      "careVal": "Untuk mengekalkan kualiti produk Fancy anda, kami mengesyorkan cucian kering profesional untuk semua tekstil. Untuk perabot, lap with kain mikrofiber yang dilembapkan dengan air suling. Elakkan bahan kimia keras dan pendedahan terus kepada cahaya matahari tropika untuk mengekalkan kedalaman warna."
     }
   },
   "Cart": {
@@ -161,5 +162,43 @@
       "search": "Cari produk...",
       "noResults": "Tiada produk yang sepadan dengan kriteria anda."
     }
+  },
+  "Checkout": {
+    "title": "Bayaran",
+    "contact": "Maklumat Hubungan",
+    "shipping": "Maklumat Penghantaran",
+    "payment": "Kaedah Pembayaran",
+    "summary": "Semakan Pesanan",
+    "placeOrder": "Sahkan Pesanan Sekarang",
+    "success": "Pesanan Berjaya!",
+    "successDesc": "Terima kasih kerana memilih Fancy. Pesanan anda telah diterima dan sedang disediakan untuk penghantaran.",
+    "backToShop": "Teruskan Membeli-belah",
+    "labels": {
+      "fullName": "Nama Penuh",
+      "phone": "Nombor Telefon",
+      "email": "Alamat Emel",
+      "address": "Alamat Jalan",
+      "city": "Bandar",
+      "state": "Negeri / Wilayah",
+      "postalCode": "Poskod",
+      "cod": "Bayar Tunai",
+      "codDesc": "Bayar semasa barangan sampai",
+      "stripe": "Bayaran Kad Selamat",
+      "stripeDesc": "Kad Kredit / FPX melalui Stripe"
+    }
+  },
+  "Login": {
+    "welcome": "Selamat Kembali",
+    "subtitle": "Log masuk ke papan pemuka pentadbir anda",
+    "email": "Alamat Emel",
+    "emailPlaceholder": "admin@example.com",
+    "password": "Kata Laluan",
+    "passwordPlaceholder": "Masukkan kata laluan anda",
+    "signIn": "Log Masuk",
+    "signingIn": "Mengesahkan...",
+    "back": "Kembali ke Laman Web",
+    "error": "Log masuk gagal. Sila semak kelayakan anda.",
+    "tagline": "Kualiti dalam setiap lipatan. Langsir premium dan perabot eksklusif untuk hiasan dalaman yang hebat.",
+    "secureAccess": "Akses Pentadbiran Selamat Sahaja"
   }
 }

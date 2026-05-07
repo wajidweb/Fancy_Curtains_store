@@ -65,6 +65,7 @@
     "cart": "Cart",
     "login": "Login",
     "logout": "Logout",
+    "orders": "My Orders",
     "announcement": "QUALITY IN EVERY FOLD • FREE SHIPPING ABOVE RM500",
     "language": "Language"
   },
@@ -161,5 +162,43 @@
       "search": "Search products...",
       "noResults": "No products found matching your criteria."
     }
+  },
+  "Checkout": {
+    "title": "Checkout",
+    "contact": "Contact Information",
+    "shipping": "Shipping Details",
+    "payment": "Payment Method",
+    "summary": "Order Review",
+    "placeOrder": "Place Order Now",
+    "success": "Order Placed Successfully!",
+    "successDesc": "Thank you for choosing Fancy. Your order has been received and is being prepared for shipment.",
+    "backToShop": "Continue Shopping",
+    "labels": {
+      "fullName": "Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "address": "Street Address",
+      "city": "City",
+      "state": "State / Region",
+      "postalCode": "Postal Code",
+      "cod": "Cash on Delivery",
+      "codDesc": "Pay when your items arrive",
+      "stripe": "Secure Card Payment",
+      "stripeDesc": "Credit Card / FPX via Stripe"
+    }
+  },
+  "Login": {
+    "welcome": "Welcome Back",
+    "subtitle": "Access your administrative dashboard",
+    "email": "Email Address",
+    "emailPlaceholder": "admin@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "signIn": "Sign In",
+    "signingIn": "Authenticating...",
+    "back": "Return to Website",
+    "error": "Login failed. Please check your credentials.",
+    "tagline": "Excellence in every fold. Premium curtains and bespoke furniture for masterful interiors.",
+    "secureAccess": "Secure Administrative Access Only"
   }
 }
