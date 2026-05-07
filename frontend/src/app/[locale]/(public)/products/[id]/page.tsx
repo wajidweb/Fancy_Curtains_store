@@ -259,14 +259,11 @@ export default function ProductDetailPage() {
                   <ShoppingCart size={18} strokeWidth={2.5} />
                   {t('addToCart')}
                 </button>
-                <button className="w-20 border border-gray-200 flex items-center justify-center hover:bg-fancy-maroon hover:text-white hover:border-fancy-maroon transition-all group">
-                  <Heart size={20} className="group-active:scale-90 transition-transform" />
-                </button>
               </div>
               
               {product.category === 'curtains' && (
                 <Link 
-                  href={`/${locale}/services`}
+                  href={`/${locale}/services?product=${product._id}`}
                   className="w-full bg-fancy-charcoal text-white py-6 text-[11px] tracking-[0.4em] uppercase font-extrabold hover:bg-black transition-all flex items-center justify-center gap-4 rounded-sm"
                 >
                   <Ruler size={18} strokeWidth={2.5} />

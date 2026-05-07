@@ -187,6 +187,38 @@
       "stripeDesc": "Kad Kredit / FPX melalui Stripe"
     }
   },
+  "Services": {
+    "hero": {
+      "badge": "Perkhidmatan Eksklusif",
+      "title": "Tempahan Ukuran & Pemasangan",
+      "subtitle": "Dapatkan ukuran profesional untuk langsir impian anda secara percuma terus ke rumah anda."
+    },
+    "whyChooseUs": {
+      "title": "Kenapa pilih kami?",
+      "point1": "Ukuran tepat oleh pakar langsir kami.",
+      "point2": "Nasihat percuma tentang pilihan fabrik dan gaya.",
+      "point3": "Perkhidmatan pemasangan yang kemas dan pantas."
+    },
+    "form": {
+      "name": "Nama Penuh",
+      "namePlaceholder": "Masukkan nama anda",
+      "phone": "Nombor Telefon",
+      "phonePlaceholder": "Masukkan nombor WhatsApp anda",
+      "address": "Alamat Penuh",
+      "addressPlaceholder": "Masukkan alamat pemasangan penuh",
+      "date": "Tarikh Pilihan",
+      "serviceType": "Jenis Perkhidmatan",
+      "notes": "Nota Tambahan",
+      "notesPlaceholder": "Beritahu kami keperluan anda (pilihan)",
+      "submit": "Hantar Tempahan",
+      "submitting": "Sedang Diproses..."
+    },
+    "success": {
+      "title": "Tempahan Berjaya!",
+      "message": "Terima kasih. Kami akan menghubungi anda secepat mungkin untuk mengesahkan tarikh dan masa.",
+      "back": "Kembali"
+    }
+  },
   "Login": {
     "welcome": "Selamat Kembali",
     "subtitle": "Log masuk ke papan pemuka pentadbir anda",

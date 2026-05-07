@@ -5,6 +5,10 @@ const serviceRequestSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  product: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Product',
+  },
   name: {
     type: String,
     required: true,
@@ -20,17 +24,26 @@ const serviceRequestSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  serviceType: {
+    type: String,
+    required: true,
+    enum: ['Curtain Measurement', 'Furniture Consultation', 'Full Interior Design', 'Other'],
+    default: 'Curtain Measurement',
+  },
   preferredDate: {
     type: Date,
   },
   notes: {
     type: String,
   },
+  adminNotes: {
+    type: String,
+  },
   status: {
     type: String,
     required: true,
-    default: 'pending',
-    enum: ['pending', 'contacted', 'scheduled', 'completed', 'cancelled'],
+    default: 'Pending',
+    enum: ['Pending', 'Contacted', 'Measurement Scheduled', 'Quotation Sent', 'Completed', 'Cancelled'],
   },
 }, {
   timestamps: true,

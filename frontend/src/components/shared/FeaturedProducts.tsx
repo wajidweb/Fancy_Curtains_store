@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ShoppingBag, Eye, Heart } from 'lucide-react';
+import { ShoppingBag, Eye } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCartStore } from '@/store/useCartStore';
 import axios from 'axios';
@@ -21,6 +22,7 @@ interface Product {
 export default function FeaturedProducts() {
   const locale = useLocale() as 'ms' | 'en';
   const t = useTranslations('FeaturedProducts');
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<'curtains' | 'furniture'>('curtains');
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -136,13 +138,11 @@ export default function FeaturedProducts() {
                     {/* Quick Actions */}
                     <div className="absolute top-4 right-4 flex flex-col gap-2 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
                       <button 
-                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
-                        className="bg-white p-3 rounded-full text-fancy-charcoal hover:bg-fancy-maroon hover:text-white shadow-xl transition-colors"
-                      >
-                        <Heart size={16} />
-                      </button>
-                      <button 
-                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                        onClick={(e) => { 
+                          e.preventDefault(); 
+                          e.stopPropagation(); 
+                          router.push(`/${locale}/products/${product._id}`);
+                        }}
                         className="bg-white p-3 rounded-full text-fancy-charcoal hover:bg-fancy-maroon hover:text-white shadow-xl transition-colors"
                       >
                         <Eye size={16} />

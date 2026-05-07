@@ -187,6 +187,38 @@
       "stripeDesc": "Credit Card / FPX via Stripe"
     }
   },
+  "Services": {
+    "hero": {
+      "badge": "Exclusive Services",
+      "title": "Measurement & Installation",
+      "subtitle": "Get professional measurements for your dream curtains for free, delivered right to your doorstep."
+    },
+    "whyChooseUs": {
+      "title": "Why choose us?",
+      "point1": "Precise measurements by our curtain experts.",
+      "point2": "Free advice on fabric choices and styles.",
+      "point3": "Neat and fast installation service."
+    },
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your name",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Enter your WhatsApp number",
+      "address": "Full Address",
+      "addressPlaceholder": "Enter your full installation address",
+      "date": "Preferred Date",
+      "serviceType": "Service Required",
+      "notes": "Additional Notes",
+      "notesPlaceholder": "Tell us about your requirements (optional)",
+      "submit": "Confirm Booking",
+      "submitting": "Processing..."
+    },
+    "success": {
+      "title": "Booking Successful!",
+      "message": "Thank you. We will contact you as soon as possible to confirm the date and time.",
+      "back": "Go Back"
+    }
+  },
   "Login": {
     "welcome": "Welcome Back",
     "subtitle": "Access your administrative dashboard",
