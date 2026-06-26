@@ -9,7 +9,7 @@ const loginUser = async (req, res) => {
 
   // Hardcoded Admin Credentials
   const ADMIN_EMAIL = 'admin@gmail.com';
-  const ADMIN_PASSWORD = 'test1234';
+  const ADMIN_PASSWORD = 'admin123';
 
   if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
     // We still find the user in DB to get an ID for the token, 
@@ -25,6 +25,13 @@ const loginUser = async (req, res) => {
         password: ADMIN_PASSWORD, // This will be hashed by the model pre-save
         role: 'admin'
       });
+    } else {
+      // Ensure password in database is up to date with ADMIN_PASSWORD
+      const isMatch = await user.matchPassword(ADMIN_PASSWORD);
+      if (!isMatch) {
+        user.password = ADMIN_PASSWORD;
+        await user.save();
+      }
     }
 
     res.json({
